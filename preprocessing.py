@@ -42,6 +42,6 @@ if __name__=='__main__':
     train_data, validation_data, test_data = np.split(model_data.sample(frac=1, random_state=1729), [int(0.7 * len(model_data)), int(0.9 * len(model_data))])   # Randomly sort the data then split out first 70%, second 20%, and last 10% 
             
     # Write the training/validation/test data as a CSV file without headers, with the target as the first column and with no row numbers
-    train_data.to_csv('/opt/ml/processing/output/train.csv', header=False, index=False)
-    validation_data.to_csv('/opt/ml/processing/output/validation.csv', header=False, index=False)
-    test_data.to_csv('/opt/ml/processing/output/test.csv', header=False, index=False)
+    train_data.to_csv('/opt/ml/processing/output/train/train.csv', header=False, index=False)
+    validation_data.to_csv('/opt/ml/processing/output//validation/validation.csv', header=False, index=False)
+    test_data.to_csv('/opt/ml/processing/output/test/test.csv', header=False, index=False)
