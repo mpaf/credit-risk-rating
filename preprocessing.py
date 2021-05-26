@@ -45,3 +45,4 @@ if __name__=='__main__':
     train_data.to_csv('/opt/ml/processing/output/train/train.csv', header=False, index=False)
     validation_data.to_csv('/opt/ml/processing/output//validation/validation.csv', header=False, index=False)
     test_data.to_csv('/opt/ml/processing/output/test/test.csv', header=False, index=False)
+    model_data.to_csv('/opt/ml/processing/output/data/processed_with_headers.csv', header=True, index=False)
