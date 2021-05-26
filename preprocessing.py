@@ -17,6 +17,14 @@ if __name__=='__main__':
 
     input_data_path = os.path.join('/opt/ml/processing/input', 'UCI_Credit_Card.csv')
     
+    try:
+        os.makedirs('/opt/ml/processing/output/train')
+        os.makedirs('/opt/ml/processing/output/validation')
+        os.makedirs('/opt/ml/processing/output/test')
+        os.makedirs('/opt/ml/processing/output/processed_with_headers')
+    except:
+        pass
+    
     print('Reading input data from {}'.format(input_data_path))
     
     data = pd.read_csv(input_data_path)
@@ -45,4 +53,4 @@ if __name__=='__main__':
     train_data.to_csv('/opt/ml/processing/output/train/train.csv', header=False, index=False)
     validation_data.to_csv('/opt/ml/processing/output//validation/validation.csv', header=False, index=False)
     test_data.to_csv('/opt/ml/processing/output/test/test.csv', header=False, index=False)
-    model_data.to_csv('/opt/ml/processing/output/data/processed_with_headers.csv', header=True, index=False)
+    model_data.to_csv('/opt/ml/processing/output/processed_with_headers.csv', header=True, index=False)
