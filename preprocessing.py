@@ -42,10 +42,13 @@ if __name__=='__main__':
     data[columns_to_scale] = min_max_scaler.fit_transform(data[columns_to_scale])
     
     columns_to_onehot_encode = ['SEX', 'EDUCATION', 'MARRIAGE']
-
+    
     model_data = pd.get_dummies(data, prefix=columns_to_onehot_encode, columns=columns_to_onehot_encode)
  
     model_data = model_data[ ['default.payment.next.month'] + [ col for col in model_data.columns if col != 'default.payment.next.month' ] ]
+    
+    # Rename target column for model monitor to parse accurately
+    model_data = model_data.rename(columns={"default.payment.next.month": "default_payment_next_month"})
 
     train_data, validation_data, test_data = np.split(model_data.sample(frac=1, random_state=1729), [int(0.7 * len(model_data)), int(0.9 * len(model_data))])   # Randomly sort the data then split out first 70%, second 20%, and last 10% 
             
