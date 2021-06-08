@@ -1,0 +1,20 @@
+  DataCaptureBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+
+  EndpointConfig:
+    Type: AWS::SageMaker::EndpointConfig
+    Properties:
+      DataCaptureConfig: 
+        CaptureOptions: 
+          - CaptureMode: Input
+          - CaptureMode: Output
+        DestinationS3Uri: !Sub "s3://${DataCaptureBucket}/captured-data"
+        EnableCapture: true 
+        InitialSamplingPercentage: 100
+      ProductionVariants:
+        - InitialInstanceCount: !Ref EndpointInstanceCount
+          InitialVariantWeight: 1.0
+          InstanceType: !Ref EndpointInstanceType
+          ModelName: !GetAtt Model.ModelName
+          VariantName: AllTraffic
